@@ -1,5 +1,6 @@
 import sys
 import socket
+import gradescope
 
 def main():
     # Check command-line arguments
@@ -46,7 +47,6 @@ def main():
 
         # Step 7: Close the socket and exit with a success code
         client_socket.close()
-        sys.exit(0)
 
     except socket.error as e:
         # Handle socket errors here
@@ -57,6 +57,9 @@ def main():
         # Handle other exceptions and errors here
         print(f"ERROR: {str(e)}")
         sys.exit(1)
+
+    # Submit the file to Gradescope before exiting
+    gradescope.submit(filename)
 
 if __name__ == "__main__":
     main()
